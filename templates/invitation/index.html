@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на юбилей | Анай-Хаак</title>
+    
+    <!-- Подключаем красивые шрифты + каллиграфический шрифт Great Vibes для календаря -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Подключаем наш CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- БЛОК 1: Обложка (Фото 1 на фоне) -->
+    <section class="section hero-section">
+        <div class="hero-bg" style="background-image: url('{% static 'images/photo1.jpg' %}');"></div>
+        <div class="hero-content">
+            <p class="subtitle">BIRTHDAY PARTY</p>
+            <!-- Надпись "35 лет" убрана, оставили только имя -->
+            <h1 class="main-title">Анай-Хаак</h1>
+            
+            <div class="scroll-arrow" onclick="scrollToNext()">
+                <span>Листайте вниз</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Разделитель -->
+    <div class="divider-block">
+        <svg width="40" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+
+    <!-- БЛОК 2: Текст, Календарь и Детали -->
+    <section class="section text-section">
+        <div class="container">
+            <!-- Фото 2 (сделали класс photo-large для увеличения) -->
+            <img src="{% static 'images/photo2.jpg' %}" alt="Анай-Хаак" class="full-photo photo-large">
+            
+            <h2 class="section-title">Birthday party!!!</h2>
+            <div class="hearts">❤️❤️❤️❤️</div>
+            
+            <div class="invitation-text">
+                <p><strong>Эргим коллегалар!</strong></p>
+                <p>Ноябрь 8-тин хунунде, 35 харлаан байырлалымче силер бугудени чалап тур мен.</p>
+                <p>Болур чери: байырлал оргээзи "Империя".<br>Эгелээри: 16:00 ш.</p>
+            </div>
+
+            <div class="separator-dots">✦ ✦ ✦</div>
+
+            <!-- Календарь -->
+            <div class="calendar-box">
+                <!-- Ноябрь на английском, каллиграфическим шрифтом -->
+                <h3 class="calendar-title">November</h3>
+                <div class="calendar-year">2026</div>
+                <div class="calendar-grid">
+                    <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+                    
+                    <span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                    
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                    <span class="highlight">8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                    <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                    <span>29</span><span>30</span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                </div>
+            </div>
+
+            <div class="separator-dots">~</div>
+
+            <!-- Детали с иконками -->
+            <div class="details-list">
+                <!-- Время -->
+                <div class="detail-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <h4>Время</h4>
+                    <p>16:00 ш.</p>
+                </div>
+
+                <!-- Место -->
+                <div class="detail-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <h4>Место</h4>
+                    <p>Заводская улица, 30</p>
+                </div>
+
+                <!-- Дресс-код -->
+                <div class="detail-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10a1 1 0 001 1h10a1 1 0 001-1V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path></svg>
+                    <h4>Дресс-код</h4>
+                    <p>Приходите в своих самых красивых нарядах</p>
+                </div>
+            </div>
+
+            <!-- Кнопка-ссылка на 2ГИС (с текстом) -->
+            <div class="location-link-container">
+                <a href="https://2gis.ru/search/Республика Тыва, г. Ак-Довурак, Заводская улица, 30" target="_blank" class="location-link">
+                    <div class="social-icon black-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <span class="location-text">Нажмите здесь, чтобы узнать место проведения</span>
+                </a>
+            </div>
+            
+            <p class="signature">Хундуткел-биле: Анай-Хаак Андреевна</p>
+
+        </div>
+    </section>
+
+    <!-- Подключаем скрипт -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
