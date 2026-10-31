@@ -12,11 +12,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-сюда-можно-вставить-любой-набор-букв-и-цифр-для-локальной-разработки')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# ВРЕМЕННО ВКЛЮЧАЕМ DEBUG, чтобы увидеть точную ошибку 500
+DEBUG = True
 
-# Разрешаем доступ с домена Netrun и локально
-ALLOWED_HOSTS = ['.netrun.io', 'localhost', '127.0.0.1']
+# РАЗРЕШАЕМ ЗАПРОСЫ С ЛЮБОГО ДОМЕНА
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -67,7 +67,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# Netrun может использовать SQLite, но мы настраиваем гибко через переменную окружения
 DATABASES = {
     'default': dj_database_url.config(
         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
@@ -94,7 +93,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # Папка, куда соберутся все стили и картинки
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
