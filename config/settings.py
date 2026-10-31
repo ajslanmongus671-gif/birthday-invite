@@ -13,10 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-сюда-можно-вставить-любой-набор-букв-и-цифр-для-локальной-разработки')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Разрешаем доступ с любого адреса (для хостинга)
-ALLOWED_HOSTS = ['*']
+# Разрешаем доступ с домена Netrun и локально
+ALLOWED_HOSTS = ['.netrun.io', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic', # Добавили WhiteNoise для статики
+    'whitenoise.runserver_nostatic', # Для отдачи статики на хостинге
     'django.contrib.staticfiles',
     
     # Наше приложение
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Добавили WhiteNoise
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Для отдачи статики
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,8 +67,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# Для локальной разработки используется SQLite, 
-# для хостинга Render автоматически подставит свои настройки через переменную DATABASE_URL
+# Netrun может использовать SQLite, но мы настраиваем гибко через переменную окружения
 DATABASES = {
     'default': dj_database_url.config(
         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
@@ -95,12 +94,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles' # Папка, куда хостинг соберет всю статику
+STATIC_ROOT = BASE_DIR / 'staticfiles' # Папка, куда соберутся все стили и картинки
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# Настройка для хранения статики на хостинге
+# Настройка WhiteNoise для раздачи статики
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
